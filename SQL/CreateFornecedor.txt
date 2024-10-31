@@ -1,0 +1,8 @@
+CREATE TABLE Fornecedor (
+    FornecedorId INT PRIMARY KEY IDENTITY(1,1),
+    RazaoSocial NVARCHAR(255),
+    CNPJ CHAR(14),
+    Email NVARCHAR(255) NOT NULL,
+    NomeFantasia NVARCHAR(255),
+    Telefone NVARCHAR(20) NOT NULL
+);
