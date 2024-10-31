@@ -48,7 +48,7 @@ namespace tests
             var posts = new Post
             {
                 Content = "Hello Word",
-                StudentId = 2
+               fornecedorId = 2
             };
 
             var client = _applicationFactory.CreateClient();
@@ -63,7 +63,7 @@ namespace tests
             var posts = new Post
             {
                 Content = "Hello Mundo",
-                StudentId = 2
+               fornecedorId = 2
             };
 
             var client = _applicationFactory.CreateClient();

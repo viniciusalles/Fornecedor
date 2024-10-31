@@ -17,36 +17,9 @@ namespace tryitter.Controllers
             _fornecedorRepository = fornecedorRepository;
         }
 
-        [Authorize]
-        [HttpGet]
-        public async Task<IActionResult> GetFornecedores()
-        {
-            var fornecedores = await _fornecedorRepository.GetFornecedores();
 
-            if (!(fornecedores?.Any() == true))
-            {
-                return NotFound("Fornecedor not found");
-            }
-
-            return Ok(fornecedores);
-        }
-
-        [Authorize]
-        [HttpGet("posts")]
-        public async Task<IActionResult> GetFornecedoresWithPosts()
-        {
-            var fornecedores = await _fornecedorRepository.GetFornecedoresWithPosts();
-
-            if (!(fornecedores?.Any() == true))
-            {
-                return NotFound("Fornecedor not found");
-            }
-
-            return Ok(fornecedores);
-        }
-
-        [Authorize]
-        [HttpGet("{id}")]
+        [AllowAnonymous]
+        [HttpGet("search/{id}")]
         public async Task<IActionResult> GetFornecedorById(int id)
         {
             var fornecedor = await _fornecedorRepository.GetFornecedorById(id);
@@ -59,22 +32,24 @@ namespace tryitter.Controllers
             return Ok(fornecedor);
         }
 
-        [Authorize]
-        [HttpGet("{id}/posts")]
-        public async Task<IActionResult> GetStudentByIdWithPost(int id)
+        [AllowAnonymous]
+        [HttpGet("search/all")]
+        public async Task<IActionResult> GetFornecedores()
         {
-            var fornecedor = await _fornecedorRepository.GetFornecedorByIdWithPost(id);
+            var fornecedores = await _fornecedorRepository.GetFornecedores();
 
-            if (fornecedor is null)
+            if (fornecedores is null)
             {
-                return NotFound("Fornecedor not found");
+                return NotFound("Fornecedores not found");
             }
 
-            return Ok(fornecedor);
+            return Ok(fornecedores);
         }
 
+
+
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<IActionResult> CreateFornecedor([FromBody] Fornecedor fornecedor)
         {
             var fornecedorByRazaoSocial = await _fornecedorRepository.GetFornecedorByRazaoSocial(fornecedor.RazaoSocial);
@@ -89,8 +64,8 @@ namespace tryitter.Controllers
             return Created("", $"{newFornecedor.NomeFantasia} registered successfully!");
         }
 
-        [Authorize]
-        [HttpPut("{id}")]
+        [AllowAnonymous]
+        [HttpPut("update/{id}")]
         public async Task<IActionResult> UpdateStudent([FromBody] Fornecedor fornecedor, int id)
         {
             var fornecedorById = await _fornecedorRepository.GetFornecedorById(id);
@@ -105,9 +80,9 @@ namespace tryitter.Controllers
             return Ok($"{updatedFornecedor.NomeFantasia} successfully updated!");
         }
 
-        [Authorize]
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteStudent(int id)
+        [AllowAnonymous]
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> DeleteFornecedor(int id)
         {          
             var fornecedorById = await _fornecedorRepository.GetFornecedorById(id);
 

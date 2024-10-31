@@ -17,61 +17,70 @@ namespace tryitter.Repository
 
         public async Task<IEnumerable<FornecedorDTO>> GetFornecedores()
         {
-            var students = await _context.Fornecedor
+            var fornecedores = await _context.Fornecedor
                 .Select(s => new FornecedorDTO
                 {
                     FornecedorId = s.FornecedorId,
-                    NomeFantasia = s.RazaoSocial
+                    NomeFantasia = s.NomeFantasia,
+                    Telefone = s.Telefone,
+                    Email = s.Email,
+                    CNPJ = s.CNPJ,
+                    RazaoSocial = s.RazaoSocial
                 }).ToListAsync();
 
-            return students;
+            return fornecedores;
         }
 
         public async Task<IEnumerable<FornecedorDTO>> GetFornecedoresWithPosts()
         {
-            var students = await _context.Fornecedor
+            var fornecedores = await _context.Fornecedor
                 .Select(s => new FornecedorDTO
                 {
                     FornecedorId = s.FornecedorId,
-                    RazaoSocial = s.RazaoSocial,
-                    CNPJ= s.CNPJ,
-                    Email= s.Email,
-                    NomeFantasia= s.NomeFantasia,
-                    Telefone= s.Telefone,
-                   
+                    NomeFantasia = s.NomeFantasia,
+                    Telefone = s.Telefone,
+                    Email = s.Email,
+                    CNPJ = s.CNPJ,
+                    RazaoSocial = s.RazaoSocial
+
                 }).ToListAsync();
 
-            return students;
+            return fornecedores;
         }
 
         public async Task<FornecedorDTO> GetFornecedorById(int id)
         {
-            var student = await _context.Fornecedor.Where(s => s.FornecedorId == id)
+            var fornecedor = await _context.Fornecedor.Where(s => s.FornecedorId == id)
                 .Select(s => new FornecedorDTO
                 {
                     FornecedorId = s.FornecedorId,
-                    NomeFantasia = s.RazaoSocial
+                    NomeFantasia = s.NomeFantasia,
+                    Telefone = s.Telefone,
+                    Email = s.Email,
+                    CNPJ = s.CNPJ,
+                    RazaoSocial = s.RazaoSocial
                 }).FirstOrDefaultAsync();
 
-            return student;
+            return fornecedor;
         }
 
         public async Task<FornecedorDTO> GetFornecedorByIdWithPost(int id)
         {
 
-            var student = await _context.Fornecedor
+            var fornecedor = await _context.Fornecedor
                 .Where(x => x.FornecedorId == id)
                 .Select(s => new FornecedorDTO
                 {
                     FornecedorId = s.FornecedorId,
-                    RazaoSocial = s.RazaoSocial,
-                    CNPJ = s.CNPJ,
-                    Email = s.Email,
                     NomeFantasia = s.NomeFantasia,
-                    
+                    Telefone = s.Telefone,
+                    Email = s.Email,
+                    CNPJ = s.CNPJ,
+                    RazaoSocial = s.RazaoSocial
+
                 }).FirstOrDefaultAsync();
 
-            return student;
+            return fornecedor;
         }
 
         public async Task<FornecedorDTO> GetFornecedorByRazaoSocial(string name)
@@ -106,27 +115,36 @@ namespace tryitter.Repository
 
         public async Task<FornecedorDTO> UpdateFornecedor(Fornecedor newFornecedor, int fornecedorId)
         {
-            var student = await _context.Fornecedor.FindAsync(fornecedorId);
+            var fornecedor = await _context.Fornecedor.FindAsync(fornecedorId);
 
-            student.RazaoSocial = newFornecedor.RazaoSocial;
+            fornecedor.NomeFantasia = newFornecedor.NomeFantasia;
+            fornecedor.CNPJ = newFornecedor.CNPJ;
+            fornecedor.Telefone = newFornecedor.Telefone;
+            fornecedor.Email = newFornecedor.Email;
+            fornecedor.RazaoSocial = newFornecedor.RazaoSocial;
+            
             _context.SaveChanges();
 
             return new FornecedorDTO
             {
+                NomeFantasia = newFornecedor.NomeFantasia,
+                Telefone = newFornecedor.Telefone,
+                Email = newFornecedor.Email,
+                CNPJ = newFornecedor.CNPJ,
                 RazaoSocial = newFornecedor.RazaoSocial
             };
         }
 
-        public void DeleteFornecedor(int studentId)
+        public void DeleteFornecedor(int forneceddorId)
         {
-            var student = _context.Fornecedor.Find(studentId);
+            var fornecedor = _context.Fornecedor.Find(forneceddorId);
 
-            if (student is null)
+            if (fornecedor is null)
             {
                 throw new Exception("Student not found");
             }
 
-            _context.Fornecedor.Remove(student);
+            _context.Fornecedor.Remove(fornecedor);
             _context.SaveChanges();
         }
     }

@@ -63,7 +63,7 @@ namespace tests
         [Fact]
         public async Task CreateStudentTest_Return_Created()
         {
-            var student = new Student
+            varfornecedor = newfornecedor
             {
                 RazaoSocial = "TestTop",
                 Age = 30,
@@ -75,7 +75,7 @@ namespace tests
             };
 
             var client = _applicationFactory.CreateClient();
-            using HttpResponseMessage response = await client.PostAsJsonAsync("/students", student);
+            using HttpResponseMessage response = await client.PostAsJsonAsync("/students",fornecedor);
 
             response.StatusCode.Should().Be(HttpStatusCode.Created);
         }
@@ -83,7 +83,7 @@ namespace tests
         [Fact]
         public async Task UpdateStudentTest_Return_Ok()
         {
-            var student = new Student
+            varfornecedor = newfornecedor
             {
                 RazaoSocial = "Test",
                 Age = 30,
@@ -95,7 +95,7 @@ namespace tests
             };
 
             var client = _applicationFactory.CreateClient();
-            using HttpResponseMessage response = await client.PutAsJsonAsync("/students/2", student);
+            using HttpResponseMessage response = await client.PutAsJsonAsync("/students/2",fornecedor);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
