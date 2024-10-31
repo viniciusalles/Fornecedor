@@ -65,13 +65,13 @@ namespace tests
         {
             var student = new Student
             {
-                Name = "TestTop",
+                RazaoSocial = "TestTop",
                 Age = 30,
-                Birthday = "27/05/1997",
+                CNPJ = "27/05/1997",
                 Email = "teste1@teste.com",
-                Gender = "Feminino",
+                NomeFantasia = "Feminino",
                 Password = "password",
-                ConfirmPassword = "password"
+                Telefone = "password"
             };
 
             var client = _applicationFactory.CreateClient();
@@ -85,13 +85,13 @@ namespace tests
         {
             var student = new Student
             {
-                Name = "Test",
+                RazaoSocial = "Test",
                 Age = 30,
-                Birthday = "27/05/1997",
+                CNPJ = "27/05/1997",
                 Email = "teste@teste.com",
-                Gender = "Feminino",
+                NomeFantasia = "Feminino",
                 Password = "password",
-                ConfirmPassword = "password"
+                Telefone = "password"
             };
 
             var client = _applicationFactory.CreateClient();

@@ -13,9 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AplicationContext>();
 builder.Services.AddScoped<IAplicationContext, AplicationContext>();
-builder.Services.AddScoped<IStudentRepository, StudentRepository>();
-builder.Services.AddScoped<IPostRepository, PostRepository>();
-builder.Services.AddScoped<ILogin, LoginRepository>();
+builder.Services.AddScoped<IFornecedorRepository, FornecedorRepository>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {

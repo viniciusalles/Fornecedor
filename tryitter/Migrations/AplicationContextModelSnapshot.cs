@@ -21,54 +21,20 @@ namespace tryitter.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("tryitter.Models.Post", b =>
+
+            modelBuilder.Entity("tryitter.Models.Fornecedor", b =>
                 {
-                    b.Property<int>("PostId")
+                    b.Property<int>("FornecedorId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PostId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FornecedorId"));
 
-                    b.Property<string>("Comments")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Likes")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Published")
+                    b.Property<string>("RazaoSocial")
                         .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("PostId");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("Posts");
-                });
-
-            modelBuilder.Entity("tryitter.Models.Student", b =>
-                {
-                    b.Property<int>("StudentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StudentId"));
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Birthday")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ConfirmPassword")
+                    b.Property<string>("CNPJ")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -76,39 +42,20 @@ namespace tryitter.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Gender")
+                    b.Property<string>("NomeFantasia")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Telefone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
 
-                    b.HasKey("StudentId");
+                    b.HasKey("FornecedorId");
 
-                    b.ToTable("Students");
+                    b.ToTable("Fornecedor");
                 });
 
-            modelBuilder.Entity("tryitter.Models.Post", b =>
-                {
-                    b.HasOne("tryitter.Models.Student", "Student")
-                        .WithMany("Posts")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Student");
-                });
-
-            modelBuilder.Entity("tryitter.Models.Student", b =>
-                {
-                    b.Navigation("Posts");
-                });
-#pragma warning restore 612, 618
+          
         }
     }
 }

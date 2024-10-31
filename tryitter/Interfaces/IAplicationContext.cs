@@ -5,8 +5,7 @@ namespace tryitter.Interfaces
 {
     public interface IAplicationContext
     {
-        public DbSet<Student> Students { get; set; }
-        public DbSet<Post> Posts { get; set; }
+        public DbSet<Fornecedor> Fornecedor { get; set; }
         public int SaveChanges();
     }
 }
